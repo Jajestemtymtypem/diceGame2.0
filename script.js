@@ -3,6 +3,7 @@ const gra = {
     zatrzymanie: [false, false, false, false, false],
     liczbaRzutow: 0,
     punkty: {},
+    czyTuraTrwa: false,
     uzyteFigury: {
         jedynki: false,
         dwojki: false,
@@ -20,6 +21,7 @@ const gra = {
     },
 };
 const obrazKostki = [null, "icons/1.png", "icons/2.png", "icons/3.png", "icons/4.png", "icons/5.png", "icons/6.png"]
+
 function losujKosc(){
     return Math.floor(Math.random() * 6) + 1;
 }
@@ -27,6 +29,7 @@ function losujKosc(){
 
 function rzutKostkami(){
     if(gra.liczbaRzutow >= 3) return;
+    if(gra.liczbaRzutow === 0) gra.czyTuraTrwa = true;
     for( let i = 0; i < gra.kostki.length; i++){
         if(!gra.zatrzymanie[i]){
             gra.kostki[i] = losujKosc();
@@ -38,9 +41,12 @@ function rzutKostkami(){
     gra.liczbaRzutow++;
     console.log(`rzutKostkami `, gra);
 }
-function zatrzymanieKosci(numer){
+function zatrzymajKosc(numer){
     if(gra.liczbaRzutow === 0) return;
     gra.zatrzymanie[numer] = !gra.zatrzymanie[numer];
+    const img = document.getElementById(numer);
+    img.classList.toggle('zatrzymana', gra.zatrzymanie[numer]);
+
     }
 function zliczanieKosci(){
     const licznik = [0, 0, 0, 0, 0, 0];
@@ -54,7 +60,7 @@ function szukanieFigur(){
     const suma = gra.kostki.reduce((a, b) => a+b, 0);
     const propozycje = {};
 
-    propozycje.jednki = licznik[0] *1;
+    propozycje.jedynki = licznik[0] *1;
     propozycje.dwojki = licznik[1] *2;
     propozycje.trojki = licznik[2] *3;
     propozycje.czworki = licznik[3] *4;
@@ -66,7 +72,16 @@ function szukanieFigur(){
     propozycje.general = licznik.includes(5) ? 50 : 0;
     propozycje.szansa = suma;
 
-    if (licznik.includes(3) && licznik.includes(2)) propozycje.full = 25;
+    const ma3 = licznik.includes(3);
+    const ma2 = licznik.includes(2);
+    const ile3 = licznik.filter(l => l === 3).length;
+    const ile2 = licznik.filter(l => l === 2).length;
+
+    const czyFull = ma3 && ma2 && ile3 === 1 && ile2 === 1;
+
+    propozycje.full = czyFull ? 25 : 0;
+
+
 
     const malyStrit = [
         [0, 1, 2, 3],
@@ -84,3 +99,56 @@ function szukanieFigur(){
     return propozycje;
 
 }
+function zatwierdzWynik(kategoria){
+    if(gra.uzyteFigury[kategoria]) return; 
+    const propozycje = szukanieFigur();
+    gra.punkty[kategoria] = propozycje[kategoria];
+    gra.uzyteFigury[kategoria] = true;
+
+    gra.kostki = [0, 0, 0, 0, 0];
+    gra.zatrzymanie = [false, false, false, false, false];
+    gra.liczbaRzutow = 0;
+
+    console.log("Zatwierdzono wynik:", kategoria, "=>", propozycje[kategoria]);
+    gra.czyTuraTrwa = false;
+    sprawdzKoniecGry();
+
+}
+function aktualizujWyniki(){
+    for (const [kategoria, wynik] of Object.entries(gra.punkty)) {
+        const el = document.getElementById(kategoria);
+        if(el) {
+            el.textContent = wynik;
+            el.style.pointerEvents = `none`;
+            el.style.opacity = `0.5`;
+        }
+        const suma = Object.values(gra.punkty).reduce((a, b) => a + b, 0);
+         const sumaEl = document.getElementById('sumaPkt');
+        if (sumaEl) sumaEl.textContent = suma + ' pkt';
+    }
+    const suma = Object.values(gra.punkty).reduce((a, b) => a + b, 0);
+    document.getElementById(`sumaPkt`).textCintent = suma + `pkt`;
+    
+}
+const polaWynikow = document.querySelectorAll(`.score`);
+
+polaWynikow.forEach(pole => {
+    pole.addEventListener(`click`, () => {
+        const kategoria = pole.dataset.kategoria;
+        if (!kategoria) return;
+
+        if(gra.uzyteFigury[kategoria]) return;
+        if (!gra.czyTuraTrwa) return;
+        zatwierdzWynik(kategoria);
+        aktualizujWyniki();
+    });
+});
+function sprawdzKoniecGry(){
+    const wysztkieUzyte = Object.values(gra.uzyteFigury).every(val => val === true);
+    if(wysztkieUzyte) {
+        const suma = Object.values(gra.punkty).reduce((a, b) => a+b, 0);
+        setTimeout(() => {
+            alert(`Koniec gry! Twój wynik końcowy to ${suma} punktów.`);
+        }, 100);
+        }
+    }

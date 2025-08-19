@@ -10,11 +10,11 @@
     <div class="Page">
         <div class="title"><h1>Kości</h1></div>
         <div class="table">
-            <div class="dice-box"><img id="0"src="icons/0dice.png"></div>
-            <div class="dice-box"><img id="1"src="icons/0dice.png"></div>
-            <div class="dice-box"><img id="2"src="icons/0dice.png"></div>
-            <div class="dice-box"><img id="3"src="icons/0dice.png"></div>
-            <div class="dice-box"><img id="4"src="icons/0dice.png"></div>
+            <div class="dice-box"><img id="0"src="icons/0dice.png" onclick="zatrzymajKosc(0)"></div>
+            <div class="dice-box"><img id="1"src="icons/0dice.png" onclick="zatrzymajKosc(1)"></div>
+            <div class="dice-box"><img id="2"src="icons/0dice.png" onclick="zatrzymajKosc(2)"></div>
+            <div class="dice-box"><img id="3"src="icons/0dice.png" onclick="zatrzymajKosc(3)"></div>
+            <div class="dice-box"><img id="4"src="icons/0dice.png" onclick="zatrzymajKosc(4)"></div>
         </div>
         <div class="controls">
             <button class="draw" onclick="rzutKostkami(click)">Rzut kośćmi</button>
@@ -26,59 +26,59 @@
             </div>
             <div class="figure">
                 <div id="1">Jedynki <img src="icons/1.png"></div>
-                <div class="score" id="jedynki">0</div>
+                <div class="score" id="jedynki" data-kategoria="jedynki">0</div>
             </div>
             <div class="figure">
                 <div id="2">Dwójki <img src="icons/2.png"></div>
-                <div class="score" id="dwojki">0</div>
+                <div class="score" id="dwojki" data-kategoria="dwojki">0</div>
             </div>
             <div class="figure">
                 <div id="3">Trójki <img src="icons/3.png"></div>
-                <div class="score" id="trojki">0</div>
+                <div class="score" id="trojki" data-kategoria="trojki">0</div>
             </div>
             <div class="figure">
                 <div id="4">Czwórki <img src="icons/4.png"></div>
-                <div class="score" id="czworki">0</div>
+                <div class="score" id="czworki" data-kategoria="czworki">0</div>
             </div>
             <div class="figure">
                 <div id="5">Piątki <img src="icons/5.png"></div>
-                <div class="score" id="piatki">0</div>
+                <div class="score" id="piatki" data-kategoria="piatki">0</div>
             </div>
             <div class="figure">
                 <div id="6">Szóstki <img src="icons/6.png"></div>
-                <div class="score" id="szostki">0</div>
+                <div class="score" id="szostki" data-kategoria="szostki">0</div>
             </div>
             <div class="figure">
                 <div id="3x">Trzy takie same <img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"></div>
-                <div class="score" id="trzyTeSame">0</div>
+                <div class="score" id="trzyTakieSame" data-kategoria="trzyTakieSame">0</div>
             </div>
             <div class="figure">
                 <div id="4x">Cztery takie same <img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"></div>
-                <div class="score" id="czteryTeSame">0</div>
+                <div class="score" id="czteryTakieSame" data-kategoria="czteryTakieSame">0</div>
             </div>
             <div class="figure">
                 <div id="32">Full <img src="icons/1.png"><img src="icons/1.png"><img src="icons/2.png"><img src="icons/2.png"><img src="icons/2.png"></div>
-                <div class="score" id="full">0</div>
+                <div class="score" id="full" data-kategoria="full">0</div>
             </div>
             <div class="figure">
                 <div id="smallStraight">Mały strit <img src="icons/1.png"><img src="icons/2.png"><img src="icons/3.png"><img src="icons/4.png"></div>
-                <div class="score" id="malyStrit">0</div>
+                <div class="score" id="malyStrit" data-kategoria="malyStrit">0</div>
             </div>
             <div class="figure">
                 <div id="bigStraight">Duży strit <img src="icons/1.png"><img src="icons/2.png"><img src="icons/3.png"><img src="icons/4.png"><img src="icons/5.png"></div>
-                <div class="score" id="duzyStrit">0</div>
+                <div class="score" id="duzyStrit" data-kategoria="duzyStrit">0</div>
             </div>
             <div class="figure">
-                <div id="general">Generał <img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"></div>
-                <div class="score" id="general">0</div>
+                <div id="generall">Generał <img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"><img src="icons/1.png"></div>
+                <div class="score" id="general" data-kategoria="general">0</div>
             </div>
             <div class="figure">
                 <div id="chance">Szansa <img src="icons/0dice.png"><img src="icons/0dice.png"><img src="icons/0dice.png"><img src="icons/0dice.png"><img src="icons/0dice.png"></div>
-                <div class="score" id="szansa">0</div>
+                <div class="score" id="szansa" data-kategoria="szansa">0</div>
             </div>
             <div class="figure">
                 <div id="sum">Suma punktów:</div>
-                <div class="score" id="sumaPkt">0.pkt</div>
+                <div class="score" id="sumaPkt" data-kategoria="sumaPkt">0.pkt</div>
             </div>
            
         </div>
