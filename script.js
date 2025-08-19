@@ -5,7 +5,18 @@ const gra = {
     punkty: {},
     uzyteFigury: {
         jedynki: false,
-        //wypisać dalej figury
+        dwojki: false,
+        trojki: false,
+        czworki: false,
+        piatki: false,
+        szostki: false,
+        trzyTakieSame: false,
+        czteryTakieSame: false,
+        full: false,
+        general: false, 
+        szansa: false,
+        malyStrit: false,
+        duzyStrit: false,
     },
 };
 const obrazKostki = [null, "icons/1.png", "icons/2.png", "icons/3.png", "icons/4.png", "icons/5.png", "icons/6.png"]
