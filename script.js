@@ -80,7 +80,7 @@ function szukanieFigur(){
         [1, 2, 3, 4, 5],
     ];
     propozycje.duzyStrit = duzyStrit.some(s => s.every(i => licznik[i] > 0)) ? 40 : 0;
-    //console.log(`szukanieFigur`, propozycje);
+    console.log(`szukanieFigur`, propozycje);
     return propozycje;
 
 }
