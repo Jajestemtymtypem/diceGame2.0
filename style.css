@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.Page{
+    width: 100%;
+    
+}
+.title{
+    text-align: center;
+    margin-top: 1rem;
+}
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.controls button{
+    background-color:rgb(207, 242, 154);
+}
+.controls button:hover{
+    background-color:rgb(179, 244, 82);
+}
+.draw{
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 20%;
+    border: 2px solid white;
+}
+.table{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: auto;
+    border: 2px solid black;
+}
+.dice-box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 6rem;
+    min-height: 6em;
+    border: 2px solid rgb(0, 0, 0);
+    margin: 0.5rem;
+}
+.dice-box.selected{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 6rem;
+    min-height: 6em;
+    border: 2px solid rgb(0, 0, 0);
+    margin: 0.5rem;
+    background-color: red;
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin:auto;
+    border: 2px solid black;
+}
+.figure{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.1rem 1rem;
+    min-height: 2rem;
+    border-bottom: 1px solid black;
+}
+.figure div{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    font-size: 1.5rem;
+}
+.figure img{
+    margin: 0.1rem;
+    max-width: 1rem;
+}
